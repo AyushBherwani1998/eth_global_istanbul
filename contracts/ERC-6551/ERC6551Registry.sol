@@ -2,8 +2,9 @@
 pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/utils/Create2.sol";
-import "./interface/IERC6551Registry.sol";
+import "./interfaces/IERC6551Registry.sol";
 
+/// Deployed at 0x16A3fC5eF8175F7ca83bD5673Feb1E9f52c4d369
 contract ERC6551Registry is IERC6551Registry {
     error InitializationFailed();
 
