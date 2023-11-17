@@ -1,0 +1,59 @@
+{
+	"compiler": {
+		"version": "0.8.21+commit.d9974bed"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "implementation",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/ERC-6551/interfaces/IERC6551Account.sol": "IERC6551AccountProxy"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/ERC-6551/interfaces/IERC6551Account.sol": {
+			"keccak256": "0x8b606e652f7ff85e928cd141ebfd3b41cebe83450e28ef1b20267a4e45802bbe",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ae3c2180e0a463421f72592e229fcf6365da770b57646411184e17c3d904a1e8",
+				"dweb:/ipfs/QmZNkKdeDAbgUU1jJqDK6zvLMvMJxkDD76m9ERbDyu831W"
+			]
+		}
+	},
+	"version": 1
+}
