@@ -2,6 +2,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:frontend/core/curve_grid/curve_grid_network_client.dart';
 import 'package:frontend/core/curve_grid/curve_grid_provider.dart';
 import 'package:frontend/core/wallet_connect/utils/namespace_utils.dart';
+import 'package:frontend/features/leaderboard/data/leaderboard_provider.dart';
 import 'package:get_it/get_it.dart';
 import 'package:web3dart/web3dart.dart';
 import 'package:http/http.dart' as http;
@@ -42,12 +43,16 @@ class ServiceLocator {
       () => walletConnectModalService,
     );
 
-     getIt.registerLazySingleton<CurveGridNetworkClient>(
+    getIt.registerLazySingleton<CurveGridNetworkClient>(
       () => CurveGridNetworkClient(),
     );
 
     getIt.registerLazySingleton<CurveGridProvider>(
       () => CurveGridProvider(getIt()),
+    );
+
+    getIt.registerLazySingleton(
+      () => LeaderBoardProvider(curveGridProvider: getIt()),
     );
   }
 }

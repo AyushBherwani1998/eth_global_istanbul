@@ -9,7 +9,7 @@ class LeaderBoardProvider {
 
   Future<int> viewCurrentChallengeId() async {
     final result = await curveGridProvider.callContractReadFunction(
-      contractLabel: 'weekly_challenge',
+      contractLabel: 'weekly_challenges',
       contractType: 'weekly_challenge',
       methodName: "currentChallengeId",
       args: [],
@@ -21,7 +21,7 @@ class LeaderBoardProvider {
   Future<ChallengeModel> viewChallenge() async {
     final currentChallengeId = await viewCurrentChallengeId();
     final result = await curveGridProvider.callContractReadFunction(
-      contractLabel: 'weekly_challenge',
+      contractLabel: 'weekly_challenges',
       contractType: 'weekly_challenge',
       methodName: "viewChallenge",
       args: [currentChallengeId],
@@ -35,7 +35,7 @@ class LeaderBoardProvider {
   Future<List<int>> viewScoresSubmittedForCurrentChallenge() async {
     final currentChallengeId = await viewCurrentChallengeId();
     final result = await curveGridProvider.callContractReadFunction(
-      contractLabel: 'weekly_challenge',
+      contractLabel: 'weekly_challenges',
       contractType: 'weekly_challenge',
       methodName: "viewChallenge",
       args: [GameConfig.userAddress(), currentChallengeId],
@@ -44,5 +44,17 @@ class LeaderBoardProvider {
     final list = List.from(result.result.output);
     final scores = list.map((e) => int.parse(e.toString()));
     return scores.toList();
+  }
+
+  Future<int> checkUserTicketId() async {
+    final currentChallengeId = await viewCurrentChallengeId();
+    final result = await curveGridProvider.callContractReadFunction(
+      contractLabel: 'weekly_challenges',
+      contractType: 'weekly_challenge',
+      methodName: "viewUserTicketId",
+      args: [currentChallengeId, GameConfig.userAddress()],
+    );
+
+    return int.parse(result.result.output.toString());
   }
 }
