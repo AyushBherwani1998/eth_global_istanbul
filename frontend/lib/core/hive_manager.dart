@@ -18,7 +18,7 @@ class HiveManager {
     gameConfigBox.put(key, value);
   }
 
-  static dynamic getData(String key) async {
+  static dynamic getData(String key) {
     return gameConfigBox.get(key);
   }
 }

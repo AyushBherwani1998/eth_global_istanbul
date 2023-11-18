@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:frontend/core/game_config.dart';
 import 'package:frontend/core/hive_manager.dart';
 import 'package:frontend/core/service_locator.dart';
 import 'package:frontend/features/login/presentation/pages/login_page.dart';
+import 'package:frontend/features/menu/presentation/pages/main_menu.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,7 +42,9 @@ class MyApp extends StatelessWidget {
         colorScheme: const ColorScheme.dark(),
         useMaterial3: true,
       ),
-      home: Scaffold(body: const LoginPage()),
+      home: GameConfig.isFirstTimeUser()
+          ? Scaffold(body: const LoginPage())
+          : MainMenu(),
     );
   }
 }
