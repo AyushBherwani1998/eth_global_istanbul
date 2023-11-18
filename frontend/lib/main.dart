@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:frontend/core/curve_grid/curve_grid_provider.dart';
 import 'package:frontend/core/game_config.dart';
 import 'package:frontend/core/hive_manager.dart';
 import 'package:frontend/core/service_locator.dart';
+import 'package:frontend/features/leaderboard/data/leaderboard_provider.dart';
 import 'package:frontend/features/login/presentation/pages/login_page.dart';
 import 'package:frontend/features/menu/presentation/pages/main_menu.dart';
 
@@ -10,8 +13,15 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await dotenv.load(fileName: ".env");
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.landscapeRight,
+  ]);
   await ServiceLocator.init();
   await HiveManager.openBoxes();
+  final result = await LeaderBoardProvider(
+    curveGridProvider: ServiceLocator.getIt<CurveGridProvider>(),
+  ).viewScoresSubmittedForCurrentChallenge();
+  print(result);
   runApp(const MyApp());
 }
 

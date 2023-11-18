@@ -1,6 +1,8 @@
+import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:frontend/core/extension.dart';
 import 'package:frontend/core/game_config.dart';
+import 'package:frontend/features/adventure_runner/adventure_runner.dart';
 import 'package:frontend/features/menu/presentation/widgets/menu_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -22,7 +24,11 @@ class MainMenu extends StatelessWidget {
             const Spacer(),
             MainMenuButton(
               buttonText: "Play",
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return GameWidget(game: RunnerGame());
+                }));
+              },
             ),
             const SizedBox(height: 16),
             MainMenuButton(

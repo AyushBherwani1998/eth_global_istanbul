@@ -9,6 +9,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@chainlink/contracts/src/v0.8/automation/AutomationCompatible.sol";
 import "./interfaces/IWeeklyChallenge.sol";
 
+/// Deployed at 0x083B91A0d157b65B9778b023b18ad92Ed7007Ea1
 contract WeeklyChallenge is WeeklyChallengeInterface, Ownable, AutomationCompatibleInterface {
     using SafeERC20 for IERC20;
 
