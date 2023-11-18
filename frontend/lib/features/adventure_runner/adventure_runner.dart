@@ -5,8 +5,11 @@ import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:frontend/features/adventure_runner/componenets/background/horizon.dart';
 import 'package:frontend/features/adventure_runner/componenets/background/parallax.dart';
+import 'package:frontend/features/adventure_runner/componenets/player/player.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 enum GameState { playing, intro, gameOver }
@@ -21,11 +24,18 @@ class RunnerGame extends FlameGame
   int _highscore = 0;
 
   late final TextComponent scoreText;
+  late final TextComponent speedText;
   final ParallaxBackground parallax = ParallaxBackground();
+  final Player player = Player();
 
   int get score => _score;
 
   num get speed => _speed;
+
+  set speed(num currentSped) {
+    _speed = currentSped.toInt();
+    speedText.text = "Speed: $speed";
+  }
 
   String scoreString(int score) => score.toString().padLeft(5, '0');
 
@@ -68,6 +78,7 @@ class RunnerGame extends FlameGame
     ]);
 
     add(parallax);
+    add(player);
     add(Horizon());
 
     scoreText = TextComponent(
@@ -76,10 +87,89 @@ class RunnerGame extends FlameGame
         style: GoogleFonts.pressStart2p(fontSize: 24),
       ),
     );
+
+    speedText = TextComponent(
+      text: startSpeed.toInt().toString(),
+      textRenderer: TextPaint(
+        style: GoogleFonts.pressStart2p(fontSize: 24),
+      ),
+    );
+
     add(scoreText);
 
     score = 0;
 
     return super.onLoad();
+  }
+
+  @override
+  KeyEventResult onKeyEvent(
+    RawKeyEvent event,
+    Set<LogicalKeyboardKey> keysPressed,
+  ) {
+    if (keysPressed.contains(LogicalKeyboardKey.enter) ||
+        keysPressed.contains(LogicalKeyboardKey.space)) {
+      onAction();
+    }
+    return KeyEventResult.handled;
+  }
+
+  @override
+  void onTapDown(TapDownInfo info) {
+    onAction();
+  }
+
+  void onAction() {
+    if (isGameOver || isIntro) {
+      restart();
+      return;
+    }
+    player.jump(currentSpeed);
+  }
+
+  void gameOver() {
+    state = GameState.gameOver;
+    player.current = PlayerState.crashed;
+    currentSpeed = 0.0;
+  }
+
+  void restart() {
+    state = GameState.playing;
+    player.reset();
+
+    currentSpeed = startSpeed;
+
+    timePlaying = 0.0;
+    if (score > _highscore) {
+      _highscore = score;
+    }
+    score = 0;
+    _distanceTraveled = 0;
+  }
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+    if (isGameOver) {
+      parallax.stopMoving();
+      return;
+    }
+
+    speedText.position = Vector2(size.x - speedText.width - 20, 20);
+
+    if (isPlaying) {
+      timePlaying += dt;
+      _distanceTraveled += dt * currentSpeed;
+      score = _distanceTraveled ~/ 50;
+
+      if (currentSpeed < maxSpeed) {
+        currentSpeed += acceleration * dt;
+        speed = currentSpeed;
+
+        if (parallax.xDistance <= 0 && parallax.xDistance < currentSpeed) {
+          parallax.startMoving(currentSpeed);
+        }
+      }
+    }
   }
 }
