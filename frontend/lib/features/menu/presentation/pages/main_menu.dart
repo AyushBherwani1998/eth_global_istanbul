@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:frontend/core/extension.dart';
 import 'package:frontend/core/game_config.dart';
 import 'package:frontend/features/adventure_runner/adventure_runner.dart';
+import 'package:frontend/features/leaderboard/presentation/leaderboard_page.dart';
 import 'package:frontend/features/menu/presentation/widgets/menu_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -38,7 +39,14 @@ class MainMenu extends StatelessWidget {
             const SizedBox(height: 16),
             MainMenuButton(
               buttonText: "Leader board",
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) {
+                    return const LeaderBoardPage();
+                  }),
+                );
+              },
             ),
             const SizedBox(height: 16),
             MainMenuButton(
