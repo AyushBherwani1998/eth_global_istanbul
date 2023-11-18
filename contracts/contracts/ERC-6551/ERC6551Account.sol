@@ -10,9 +10,11 @@ import "@openzeppelin/contracts/utils/cryptography/SignatureChecker.sol";
 import "@openzeppelin/contracts/token/ERC1155/IERC1155Receiver.sol";
 import "@openzeppelin/contracts/utils/introspection/IERC165.sol";
 import "./interfaces/IERC6551Account.sol";
+import "./libs/ERC6551AccountLib.sol";
+import "./libs/ERC6551MinimalReceiver.sol";
 
-import "https://github.com/kk-im/tba-tutorial-pinata/blob/master/contracts/lib/MinimalReceiver.sol";
-import "https://github.com/kk-im/tba-tutorial-pinata/blob/master/contracts/lib/ERC6551AccountLib.sol";
+// import "https://github.com/kk-im/tba-tutorial-pinata/blob/master/contracts/lib/MinimalReceiver.sol";
+// import "https://github.com/kk-im/tba-tutorial-pinata/blob/master/contracts/lib/ERC6551AccountLib.sol";
 
 /// Deployed at 0xa4E186FF9Fb9462d654237Da03688A2528cFe300
 contract ERC6551Account is IERC165, IERC1271, IERC6551Account {
