@@ -97,31 +97,41 @@ class _LeaderBoardPageState extends State<LeaderBoardPage> {
                 future: userTicketId,
                 builder: (context, data) {
                   if (data.hasData && data.data != null && data.data! < 1) {
-                    return NeoPopButton(
-                      color: kSecondaryButtonLightColor,
-                      bottomShadowColor: kShadowColorDarkGreen,
-                      rightShadowColor: kShadowColorGreen,
-                      buttonPosition: Position.fullBottom,
-                      depth: kButtonDepth,
-                      onTapUp: () {},
-                      border: Border.all(
-                        color: kBorderColorGreen,
-                        width: kButtonBorderWidth,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 8.0,
-                          vertical: 8.0,
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Participate in weekly challenge with 1 APE",
+                          style: GoogleFonts.pressStart2p(fontSize: 8),
                         ),
-                        child: Center(
-                          child: Text(
-                            "Participate",
-                            style:
-                                GoogleFonts.pressStart2p(color: Colors.white),
-                            textAlign: TextAlign.center,
+                        const SizedBox(height: 16),
+                        NeoPopButton(
+                          color: kSecondaryButtonLightColor,
+                          bottomShadowColor: kShadowColorDarkGreen,
+                          rightShadowColor: kShadowColorGreen,
+                          buttonPosition: Position.fullBottom,
+                          depth: kButtonDepth,
+                          onTapUp: () {},
+                          border: Border.all(
+                            color: kBorderColorGreen,
+                            width: kButtonBorderWidth,
                           ),
-                        ),
-                      ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8.0,
+                              vertical: 8.0,
+                            ),
+                            child: Center(
+                              child: Text(
+                                "Participate",
+                                style: GoogleFonts.pressStart2p(
+                                    color: Colors.white),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
                     );
                   }
                   return const Offstage();
