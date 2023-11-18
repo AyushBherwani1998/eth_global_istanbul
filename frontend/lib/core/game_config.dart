@@ -18,4 +18,9 @@ class GameConfig {
   static Future<void> saveWalletType(isCloudWallet) async {
     return await HiveManager.addData(isCloudWalletKey, isCloudWallet);
   }
+
+  static String userAddress() {
+    final address = HiveManager.getData(userAddressKey);
+    return address as String;
+  }
 }
