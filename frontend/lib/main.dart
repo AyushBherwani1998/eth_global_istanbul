@@ -18,10 +18,10 @@ Future<void> main() async {
   ]);
   await ServiceLocator.init();
   await HiveManager.openBoxes();
-  final result = await LeaderBoardProvider(
-    curveGridProvider: ServiceLocator.getIt<CurveGridProvider>(),
-  ).viewScoresSubmittedForCurrentChallenge();
-  print(result);
+  // final result = await LeaderBoardProvider(
+  //   curveGridProvider: ServiceLocator.getIt<CurveGridProvider>(),
+  // ).viewScoresSubmittedForCurrentChallenge();
+  // print(result);
   runApp(const MyApp());
 }
 
