@@ -9,7 +9,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@chainlink/contracts/src/v0.8/automation/AutomationCompatible.sol";
 import "./interfaces/IWeeklyChallenge.sol";
 
-/// Deployed at 0x083B91A0d157b65B9778b023b18ad92Ed7007Ea1
+/// Deployed at 0x79c786F955f7dC4ce7f428f50A98dbE06CB0B541
 contract WeeklyChallenge is WeeklyChallengeInterface, Ownable, AutomationCompatibleInterface {
     using SafeERC20 for IERC20;
 
@@ -89,8 +89,6 @@ contract WeeklyChallenge is WeeklyChallengeInterface, Ownable, AutomationCompati
             "Challenge is over"
         );
 
-
-        // Calculate number of FilDex to be transfered to this contract
         uint256 amountApeCoinToTransfer = _challenges[_challengeId]
             .priceTicketInAPE;
 
@@ -190,6 +188,13 @@ contract WeeklyChallenge is WeeklyChallengeInterface, Ownable, AutomationCompati
         returns (Challenge memory)
     {
         return _challenges[_challengeId];
+    }
+
+     function viewUserTicketId(uint256 _challengeId, address _scorer) external
+        view
+        returns (uint256)
+    {
+        return _userTicketIdPerChallenge[_scorer][_challengeId];
     }
 
     function viewScoresSubmittedForChallenge(address _user, uint256 _challengeId) external view returns (uint256[] memory){
