@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:neopop/neopop.dart';
 
 class GuesButton extends StatelessWidget {
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   const GuesButton({
     super.key,

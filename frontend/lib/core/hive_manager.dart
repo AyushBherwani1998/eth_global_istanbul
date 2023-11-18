@@ -1,4 +1,4 @@
-import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 const String gameConfigBoxKey = "gameConfig";
 const String userAddressKey = "userAddress";
@@ -10,6 +10,7 @@ class HiveManager {
   static Box get gameConfigBox => Hive.box(gameConfigBoxKey);
 
   static Future<void> openBoxes() async {
+    await Hive.initFlutter();
     await Hive.openBox(gameConfigBoxKey);
   }
 
