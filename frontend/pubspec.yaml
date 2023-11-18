@@ -45,6 +45,7 @@ dependencies:
   flutter_dotenv: ^5.1.0
   web3dart: ^2.7.1
   http: ^1.1.0
+  neopop: ^1.0.2
 
 dependency_overrides: 
   collection: 1.17.1
