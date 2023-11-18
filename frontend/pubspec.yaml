@@ -46,6 +46,7 @@ dependencies:
   web3dart: ^2.7.1
   http: ^1.1.0
   neopop: ^1.0.2
+  hive: ^2.2.3
 
 dependency_overrides: 
   collection: 1.17.1
