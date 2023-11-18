@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:frontend/core/curve_grid/curve_grid_provider.dart';
@@ -5,6 +7,7 @@ import 'package:frontend/core/game_config.dart';
 import 'package:frontend/core/service_locator.dart';
 import 'package:frontend/features/login/presentation/widgets/guest_button.dart';
 import 'package:frontend/features/login/presentation/widgets/wallet_connect_button.dart';
+import 'package:frontend/features/menu/presentation/pages/main_menu.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:web3modal_flutter/web3modal_flutter.dart';
 
@@ -25,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
 
     w3mService = ServiceLocator.getIt<W3MService>();
     w3mService.web3App?.onSessionConnect.subscribe((args) {
-      onWalletConnectConnected(args);
+      onWalletConnectConnected(args, context);
     });
     super.initState();
   }
@@ -61,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
                     onTap: isCreating
                         ? null
                         : () {
-                            createCloudWalletAddress();
+                            createCloudWalletAddress(context);
                           },
                   );
                 },
@@ -75,29 +78,40 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Future<void> createCloudWalletAddress() async {
+  Future<void> createCloudWalletAddress(BuildContext context) async {
     try {
       cloudWalletCreatingNotifier.value = true;
       final curveGridProvider = ServiceLocator.getIt<CurveGridProvider>();
       final deviceId = (await DeviceInfoPlugin().iosInfo).identifierForVendor!;
       final wallet = await curveGridProvider.createNewHSMWallet(deviceId);
-      GameConfig.saveUserAddress(wallet.azureWallet.publicAddress);
-      GameConfig.saveWalletType(true);
+      await GameConfig.saveUserAddress(wallet.azureWallet.publicAddress);
+      await GameConfig.saveWalletType(true);
       cloudWalletCreatingNotifier.value = false;
+      navigateToMenu(context);
     } catch (e, _) {
       cloudWalletCreatingNotifier.value = false;
       return;
     }
   }
 
+  void navigateToMenu(BuildContext context) {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) {
+        return const MainMenu();
+      }),
+    );
+  }
+
   void _connectWallet(BuildContext context) {
     w3mService.openModal(context);
   }
 
-  void onWalletConnectConnected(SessionConnect? args) {
+  void onWalletConnectConnected(SessionConnect? args, BuildContext context) {
     if (w3mService.isConnected) {
       GameConfig.saveUserAddress(w3mService.address!);
       GameConfig.saveWalletType(false);
+      navigateToMenu(context);
     }
   }
 }
