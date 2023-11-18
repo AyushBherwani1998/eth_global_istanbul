@@ -1,10 +1,13 @@
 import 'dart:async';
 import 'dart:ui';
 
+import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:frontend/features/adventure_runner/componenets/background/horizon.dart';
+import 'package:frontend/features/adventure_runner/componenets/background/parallax.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 enum GameState { playing, intro, gameOver }
 
@@ -16,6 +19,10 @@ class RunnerGame extends FlameGame
   int _score = 0;
   int _speed = 0;
   int _highscore = 0;
+
+  late final TextComponent scoreText;
+  final ParallaxBackground parallax = ParallaxBackground();
+
   int get score => _score;
 
   num get speed => _speed;
@@ -38,6 +45,11 @@ class RunnerGame extends FlameGame
   bool get isGameOver => state == GameState.gameOver;
   bool get isIntro => state == GameState.intro;
 
+  set score(int newScore) {
+    _score = newScore;
+    scoreText.text = scoreString(_score);
+  }
+
   @override
   Future<void> onLoad() async {
     await Flame.images.loadAll([
@@ -54,7 +66,20 @@ class RunnerGame extends FlameGame
       "parallax/statue.png",
       "parallax/stones&grass.png",
     ]);
+
+    add(parallax);
     add(Horizon());
+
+    scoreText = TextComponent(
+      position: Vector2(20, 20),
+      textRenderer: TextPaint(
+        style: GoogleFonts.pressStart2p(fontSize: 24),
+      ),
+    );
+    add(scoreText);
+
+    score = 0;
+
     return super.onLoad();
   }
 }

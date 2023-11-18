@@ -5,12 +5,14 @@ import 'package:collection/collection.dart';
 import 'package:flame/components.dart';
 import 'package:flame/experimental.dart';
 import 'package:frontend/features/adventure_runner/adventure_runner.dart';
+import 'package:frontend/features/adventure_runner/componenets/obstacles/obstacle_manager.dart';
 
 class Horizon extends PositionComponent with HasGameReference<RunnerGame> {
   Horizon() : super();
 
   static final Vector2 lineSize = Vector2(64, 32);
   final Queue<SpriteComponent> groundLayers = Queue();
+  final ObstacleManager obstacleManager = ObstacleManager();
 
   late final _tileSprite = Sprite(
     game.images.fromCache("tiles/tile.png"),
@@ -18,7 +20,9 @@ class Horizon extends PositionComponent with HasGameReference<RunnerGame> {
   );
 
   @override
-  Future<void> onLoad() async {}
+  Future<void> onLoad() async {
+    add(obstacleManager);
+  }
 
   @override
   void update(double dt) {
@@ -47,6 +51,7 @@ class Horizon extends PositionComponent with HasGameReference<RunnerGame> {
 
   void reset() {
     groundLayers.forEachIndexed((i, line) => line.x = i * lineSize.x);
+    obstacleManager.reset();
   }
 
   List<SpriteComponent> _generateLines() {
