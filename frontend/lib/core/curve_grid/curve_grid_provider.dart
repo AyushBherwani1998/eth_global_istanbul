@@ -74,7 +74,7 @@ class CurveGridProvider {
     required String signer,
     required List<dynamic> args,
     int value = 0,
-    bool signAndSubmit = true,
+    bool signAndSubmit = false,
   }) async {
     final kCallContractFunctionPath =
         "chains/ethereum/addresses/$contractLabel/contracts/$contractType/methods/$methodName";
@@ -110,7 +110,8 @@ class CurveGridProvider {
           "gasPrice": transaction.gasPrice!.getInWei.toString(),
         if (transaction.from != null) "from": transaction.from!.hex,
         if (transaction.to != null) "to": transaction.to!.hex,
-        if (transaction.data != null) "data": bytesToHex(transaction.data!, include0x: true),
+        if (transaction.data != null)
+          "data": bytesToHex(transaction.data!, include0x: true),
         "value": transaction.value!.getInWei.toString(),
         "type": 0,
       }

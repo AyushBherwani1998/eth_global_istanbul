@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:frontend/core/extension.dart';
 import 'package:frontend/core/service_locator.dart';
@@ -41,7 +43,7 @@ class _LeaderBoardPageState extends State<LeaderBoardPage> {
           children: [
             ListTile(
               title: Text(
-                "Leader board",
+                "Leaderboard",
                 style: GoogleFonts.pressStart2p(),
               ),
             ),
@@ -111,7 +113,15 @@ class _LeaderBoardPageState extends State<LeaderBoardPage> {
                           rightShadowColor: kShadowColorGreen,
                           buttonPosition: Position.fullBottom,
                           depth: kButtonDepth,
-                          onTapUp: () {},
+                          onTapUp: () async {
+                            try {
+                              await leaderBoardProvider.participate();
+                              userTicketId =
+                                  leaderBoardProvider.checkUserTicketId();
+                            } catch (e, _) {
+                              log(_.toString());
+                            }
+                          },
                           border: Border.all(
                             color: kBorderColorGreen,
                             width: kButtonBorderWidth,
