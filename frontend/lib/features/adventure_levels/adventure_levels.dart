@@ -5,6 +5,7 @@ import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flutter/painting.dart';
+import 'package:frontend/features/adventure_levels/components/home_button.dart';
 import 'package:frontend/features/adventure_levels/components/jump_button.dart';
 import 'package:frontend/features/adventure_levels/components/level.dart';
 import 'package:frontend/features/adventure_levels/components/player.dart';
@@ -35,6 +36,7 @@ class AdventureLevels extends FlameGame
     if (showControls) {
       addJoystick();
       add(JumpButton());
+      add(HomeButton());
     }
 
     return super.onLoad();

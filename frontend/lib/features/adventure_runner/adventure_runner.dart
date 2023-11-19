@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:frontend/features/adventure_runner/componenets/background/horizon.dart';
 import 'package:frontend/features/adventure_runner/componenets/background/parallax.dart';
+import 'package:frontend/features/adventure_runner/componenets/home_button.dart';
 import 'package:frontend/features/adventure_runner/componenets/player/player.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -74,11 +75,13 @@ class AdventureRunner extends FlameGame
       "parallax/sky.png",
       "parallax/statue.png",
       "parallax/stones&grass.png",
+      "HUD/Home.png",
     ]);
 
     add(parallax);
     add(player);
     add(Horizon());
+    add(HomeButton());
 
     scoreText = TextComponent(
       position: Vector2(20, 20),
