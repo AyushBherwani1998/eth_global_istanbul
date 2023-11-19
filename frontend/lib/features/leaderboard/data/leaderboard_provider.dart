@@ -91,4 +91,24 @@ class LeaderBoardProvider {
 
     return hash;
   }
+
+  Future<String> submitScore(int score) async {
+    final currentChallengeId = await viewCurrentChallengeId();
+
+    final result = await curveGridProvider.callContractWriteFunction(
+      contractLabel: 'weekly_challenges',
+      contractType: 'weekly_challenge',
+      methodName: "submitScore",
+
+      /// Operator address
+      from: "0xE4145C4CFB05A04Edb950A005e296eEac3CA46f6",
+      signer: "0xE4145C4CFB05A04Edb950A005e296eEac3CA46f6",
+      args: [GameConfig.userAddress(), score, currentChallengeId],
+      signAndSubmit: true,
+    );
+
+    final resultTx = result.result.tx;
+
+    return resultTx.hash;
+  }
 }

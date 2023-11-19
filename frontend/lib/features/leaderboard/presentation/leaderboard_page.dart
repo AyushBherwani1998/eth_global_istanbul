@@ -1,8 +1,11 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:frontend/core/extension.dart';
 import 'package:frontend/core/service_locator.dart';
+import 'package:frontend/core/widgets/dialog.dart';
 import 'package:frontend/features/leaderboard/data/leaderboard_provider.dart';
 import 'package:frontend/features/leaderboard/data/models/challenge_model.dart';
 import 'package:frontend/features/login/presentation/utils/button_constants.dart';
@@ -20,7 +23,7 @@ class _LeaderBoardPageState extends State<LeaderBoardPage> {
   late final Future<ChallengeModel> currentChallengeFuture;
   late final Future<List<int>> submittedScoresFuture;
   late final LeaderBoardProvider leaderBoardProvider;
-  late final Future<int> userTicketId;
+  late Future<int> userTicketId;
 
   @override
   void initState() {
@@ -115,10 +118,14 @@ class _LeaderBoardPageState extends State<LeaderBoardPage> {
                           depth: kButtonDepth,
                           onTapUp: () async {
                             try {
+                              showLoader(context);
                               await leaderBoardProvider.participate();
                               userTicketId =
                                   leaderBoardProvider.checkUserTicketId();
+                              setState(() {});
+                              removeLoader(context);
                             } catch (e, _) {
+                              removeLoader(context);
                               log(_.toString());
                             }
                           },

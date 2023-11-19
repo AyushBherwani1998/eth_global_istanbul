@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:frontend/core/curve_grid/curve_grid_provider.dart';
 import 'package:frontend/core/game_config.dart';
 import 'package:frontend/core/service_locator.dart';
+import 'package:frontend/core/widgets/dialog.dart';
 import 'package:frontend/features/login/presentation/widgets/guest_button.dart';
 import 'package:frontend/features/login/presentation/widgets/wallet_connect_button.dart';
 import 'package:frontend/features/menu/presentation/pages/main_menu.dart';
@@ -63,7 +64,8 @@ class _LoginPageState extends State<LoginPage> {
                   return GuesButton(
                     onTap: isCreating
                         ? null
-                        : () {
+                        : () async {
+                            showLoader(context);
                             createCloudWalletAddress(context);
                           },
                   );
@@ -87,6 +89,7 @@ class _LoginPageState extends State<LoginPage> {
       await GameConfig.saveUserAddress(wallet.azureWallet.publicAddress);
       await GameConfig.saveWalletType(true);
       cloudWalletCreatingNotifier.value = false;
+      removeLoader(context);
       navigateToMenu(context);
     } catch (e, _) {
       cloudWalletCreatingNotifier.value = false;
