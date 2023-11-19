@@ -7,7 +7,7 @@ import 'package:flame/experimental.dart';
 import 'package:frontend/features/adventure_runner/adventure_runner.dart';
 import 'package:frontend/features/adventure_runner/componenets/obstacles/obstacle_manager.dart';
 
-class Horizon extends PositionComponent with HasGameReference<RunnerGame> {
+class Horizon extends PositionComponent with HasGameReference<AdventureRunner> {
   Horizon() : super();
 
   static final Vector2 lineSize = Vector2(64, 32);

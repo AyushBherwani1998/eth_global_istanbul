@@ -49,6 +49,8 @@ dependencies:
   hive: ^2.2.3
   device_info_plus: ^9.1.0
   hive_flutter: ^1.1.0
+  flame_audio: ^2.0.5
+  flame_tiled: ^1.13.0
 
 dependency_overrides: 
   collection: 1.17.1
@@ -80,7 +82,21 @@ flutter:
     - assets/images/tiles/
     - assets/images/parallax/
     - assets/images/obstacles/
-    - .env
+    - .env 
+    - assets/audio/
+    - assets/tiles/
+    - assets/images/Background/
+    - assets/images/Terrain/
+    - assets/images/HUD/
+    - assets/images/Traps/Saw/
+    - assets/images/Items/Checkpoints/Checkpoint/
+    - assets/images/Items/Fruits/
+    - assets/images/Main Characters/
+    - assets/images/Main Characters/Mask Dude/
+    - assets/images/Main Characters/Ninja Frog/
+    - assets/images/Main Characters/Pink Man/
+    - assets/images/Main Characters/Virtual Guy/
+    - assets/images/Enemies/Chicken/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

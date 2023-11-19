@@ -2,6 +2,7 @@ import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:frontend/core/extension.dart';
 import 'package:frontend/core/game_config.dart';
+import 'package:frontend/features/adventure_levels/adventure_levels.dart';
 import 'package:frontend/features/adventure_runner/adventure_runner.dart';
 import 'package:frontend/features/leaderboard/presentation/leaderboard_page.dart';
 import 'package:frontend/features/menu/presentation/widgets/menu_button.dart';
@@ -27,14 +28,18 @@ class MainMenu extends StatelessWidget {
               buttonText: "Play",
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return GameWidget(game: RunnerGame());
+                  return GameWidget(game: AdventureLevels());
                 }));
               },
             ),
             const SizedBox(height: 16),
             MainMenuButton(
               buttonText: "Weekly Challenge",
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return GameWidget(game: AdventureRunner());
+                }));
+              },
             ),
             const SizedBox(height: 16),
             MainMenuButton(

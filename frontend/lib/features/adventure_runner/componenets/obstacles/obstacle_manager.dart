@@ -5,7 +5,7 @@ import 'package:frontend/features/adventure_runner/adventure_runner.dart';
 import 'package:frontend/features/adventure_runner/componenets/obstacles/obstacle.dart';
 import 'package:frontend/features/adventure_runner/componenets/obstacles/obstacle_type.dart';
 
-class ObstacleManager extends Component with HasGameReference<RunnerGame> {
+class ObstacleManager extends Component with HasGameReference<AdventureRunner> {
   ObstacleManager();
 
   ListQueue<ObstacleType> history = ListQueue();

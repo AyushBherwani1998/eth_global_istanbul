@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:ui';
 
 import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
@@ -14,7 +13,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 enum GameState { playing, intro, gameOver }
 
-class RunnerGame extends FlameGame
+class AdventureRunner extends FlameGame
     with KeyboardEvents, TapDetector, HasCollisionDetection {
   @override
   Color backgroundColor() => const Color(0xFFFFFFFF);
@@ -47,7 +46,7 @@ class RunnerGame extends FlameGame
   double timePlaying = 0.0;
 
   final double acceleration = 5;
-  final double characterAcceleration = 0.005;
+  final double characterAcceleration = 0.1;
   final double maxSpeed = 2500.0;
   final double startSpeed = 300;
 

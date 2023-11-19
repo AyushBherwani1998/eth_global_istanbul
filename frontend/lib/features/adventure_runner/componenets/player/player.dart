@@ -1,12 +1,13 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/experimental.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:frontend/features/adventure_runner/adventure_runner.dart';
 
 enum PlayerState { crashed, jumping, running, waiting, slipped }
 
 class Player extends SpriteAnimationGroupComponent<PlayerState>
-    with HasGameReference<RunnerGame>, CollisionCallbacks {
+    with HasGameReference<AdventureRunner>, CollisionCallbacks {
   Player() : super(size: Vector2.all(64));
 
   final double gravity = 1;
@@ -40,6 +41,8 @@ class Player extends SpriteAnimationGroupComponent<PlayerState>
     if (current == PlayerState.jumping) {
       return;
     }
+
+    FlameAudio.play('jump.wav', volume: 1.0);
 
     current = PlayerState.jumping;
     _jumpVelocity = initialJumpVelocity - (speed / 500);
