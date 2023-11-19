@@ -14,7 +14,7 @@ extension RandomExtension on Random {
 }
 
 class Obstacle extends SpriteAnimationComponent
-    with HasGameReference<RunnerGame> {
+    with HasGameReference<AdventureRunner> {
   Obstacle({
     required this.settings,
     required this.groupIndex,

@@ -4,10 +4,10 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:frontend/features/adventure_levels/components/custom_hitbox.dart';
-import 'package:frontend/features/adventure_levels/pixel_adventure.dart';
+import 'package:frontend/features/adventure_levels/adventure_levels.dart';
 
 class Fruit extends SpriteAnimationComponent
-    with HasGameRef<PixelAdventure>, CollisionCallbacks {
+    with HasGameRef<AdventureLevels>, CollisionCallbacks {
   final String fruit;
   Fruit({
     this.fruit = 'Apple',

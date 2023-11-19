@@ -9,7 +9,7 @@ import 'package:frontend/features/adventure_levels/components/jump_button.dart';
 import 'package:frontend/features/adventure_levels/components/level.dart';
 import 'package:frontend/features/adventure_levels/components/player.dart';
 
-class PixelAdventure extends FlameGame
+class AdventureLevels extends FlameGame
     with
         HasKeyboardHandlerComponents,
         DragCallbacks,

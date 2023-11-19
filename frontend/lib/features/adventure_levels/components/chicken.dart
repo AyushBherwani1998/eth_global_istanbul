@@ -5,12 +5,12 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:frontend/features/adventure_levels/components/player.dart';
-import 'package:frontend/features/adventure_levels/pixel_adventure.dart';
+import 'package:frontend/features/adventure_levels/adventure_levels.dart';
 
 enum State { idle, run, hit }
 
 class Chicken extends SpriteAnimationGroupComponent
-    with HasGameRef<PixelAdventure>, CollisionCallbacks {
+    with HasGameRef<AdventureLevels>, CollisionCallbacks {
   final double offNeg;
   final double offPos;
   Chicken({

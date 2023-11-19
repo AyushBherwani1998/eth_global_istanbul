@@ -9,9 +9,9 @@ import 'package:frontend/features/adventure_levels/components/collision_block.da
 import 'package:frontend/features/adventure_levels/components/fruit.dart';
 import 'package:frontend/features/adventure_levels/components/player.dart';
 import 'package:frontend/features/adventure_levels/components/saw.dart';
-import 'package:frontend/features/adventure_levels/pixel_adventure.dart';
+import 'package:frontend/features/adventure_levels/adventure_levels.dart';
 
-class Level extends World with HasGameRef<PixelAdventure> {
+class Level extends World with HasGameRef<AdventureLevels> {
   final String levelName;
   final Player player;
   Level({required this.levelName, required this.player});

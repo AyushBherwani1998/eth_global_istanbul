@@ -11,7 +11,7 @@ import 'package:frontend/features/adventure_levels/components/custom_hitbox.dart
 import 'package:frontend/features/adventure_levels/components/fruit.dart';
 import 'package:frontend/features/adventure_levels/components/saw.dart';
 import 'package:frontend/features/adventure_levels/components/utils.dart';
-import 'package:frontend/features/adventure_levels/pixel_adventure.dart';
+import 'package:frontend/features/adventure_levels/adventure_levels.dart';
 
 enum PlayerState {
   idle,
@@ -24,7 +24,7 @@ enum PlayerState {
 }
 
 class Player extends SpriteAnimationGroupComponent
-    with HasGameRef<PixelAdventure>, KeyboardHandler, CollisionCallbacks {
+    with HasGameRef<AdventureLevels>, KeyboardHandler, CollisionCallbacks {
   String character;
   Player({
     position,
