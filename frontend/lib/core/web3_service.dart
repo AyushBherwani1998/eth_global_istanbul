@@ -15,7 +15,7 @@ class Web3Service {
   static Future<String> signAndSubmitTransaction(
     Transaction transaction, {
     bool isCloudWallet = true,
-    int chainId = 1,
+    int chainId = 421614,
   }) async {
     final gasAndGasPrice = await estimateGasAndGasPrice(transaction);
 

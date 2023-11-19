@@ -5,6 +5,6 @@ Map<String, W3MNamespace> prepareRequiredNameSpace() {
     "eip155": const W3MNamespace(
         methods: ["personal_sign", "eth_sign", "eth_signTransaction"],
         events: [],
-        chains: ["eip155:1", "eip155:42161"])
+        chains: ["eip155:1", "eip155:421614"])
   };
 }
