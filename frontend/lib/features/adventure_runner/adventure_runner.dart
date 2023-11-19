@@ -124,6 +124,7 @@ class AdventureRunner extends FlameGame
   void onAction() {
     if (isGameOver || isIntro) {
       restart();
+
       return;
     }
     player.jump(currentSpeed);
@@ -136,6 +137,7 @@ class AdventureRunner extends FlameGame
   }
 
   void restart() {
+    overlays.remove('gameover');
     state = GameState.playing;
     player.reset();
 

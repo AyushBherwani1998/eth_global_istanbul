@@ -51,6 +51,7 @@ class Player extends SpriteAnimationGroupComponent<PlayerState>
   void reset() {
     y = groundYPos;
     _jumpVelocity = 0.0;
+    x = startXPosition;
     current = PlayerState.running;
   }
 
@@ -85,6 +86,7 @@ class Player extends SpriteAnimationGroupComponent<PlayerState>
   ) {
     super.onCollisionStart(intersectionPoints, other);
     game.gameOver();
+    game.overlays.add('gameover');
   }
 
   SpriteAnimation _spriteAnimation(String state, int amount) {
